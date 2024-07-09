@@ -10,7 +10,7 @@
 {
   "current": {
     "storefront_hostname": "metroink-e94cb3ff0c097d57927e.o2.myshopify.dev",
-    "custom_redirects": "\/account\/orders shopify.com\/63269044422\/account\/orders",
+    "custom_redirects": "",
     "integrate_with_customer_accounts": true,
     "content_for_index": [
 

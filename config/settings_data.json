@@ -15,5 +15,10 @@
     "content_for_index": [
 
     ]
+  },
+  "platform_customizations": {
+    "custom_css": [
+      ":root {--x-color-primary-action-text: #fcfcfc !important; --x-color-primary-action: #ff7300 !important; --x-color-primary-action-hovered: #ff7300 !important; --x-color-interactive-text: #ff7300 !important; --x-color-interactive-text-hovered: #fc811b !important;}"
+    ]
   }
 }

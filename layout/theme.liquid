@@ -14,6 +14,17 @@
       // Capture the full URL as early as possible
       var initialFullUrl = window.location.href;
       console.log("Initial Full URL:", initialFullUrl);
+
+      // Capture and log the full URL using Liquid variables
+      var initialPath = "{{ request.path }}";
+      var initialQueryString = "{{ request.query | url_encode }}";
+      var initialFullUrl = initialPath;
+
+      if (initialQueryString) {
+        initialFullUrl += "?" + decodeURIComponent(initialQueryString);
+      }
+
+      console.log("Initial Full URL from Liquid:", initialFullUrl);
     </script>
     
     {{ content_for_header }}

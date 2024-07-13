@@ -10,7 +10,7 @@
 {
   "current": {
     "storefront_hostname": "metroink-e94cb3ff0c097d57927e.o2.myshopify.dev",
-    "custom_redirects": "\/cart > \/contact\n\/cart\/43935021170886:1 > \/cart",
+    "custom_redirects": "\/cart > \/contact\n\/cart\/43935021170886 > \/cart",
     "integrate_with_customer_accounts": true,
     "content_for_index": [
 

@@ -70,6 +70,10 @@
               }
             }
 
+            // Capture everything after /cart/
+            var urlPath = window.location.pathname + window.location.search;
+            var cartPath = urlPath.split('/cart/')[1];
+
             redirectUrl = new URL(redirectUrl);
 
             {%- if settings.integrate_with_customer_accounts and customer != null -%}

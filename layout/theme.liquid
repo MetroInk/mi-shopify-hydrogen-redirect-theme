@@ -10,23 +10,6 @@
       {{ page_title }}
     </title>
 
-    <script>
-      // Capture the full URL as early as possible
-      var initialFullUrl = window.location.href;
-      console.log("Initial Full URL:", initialFullUrl);
-
-      // Capture and log the full URL using Liquid variables
-      var initialPath = "{{ request.path }}";
-      var initialQueryString = "{{ request.query | url_encode }}";
-      var initialFullUrl = initialPath;
-
-      if (initialQueryString) {
-        initialFullUrl += "?" + decodeURIComponent(initialQueryString);
-      }
-
-      console.log("Initial Full URL from Liquid:", initialFullUrl);
-    </script>
-    
     {{ content_for_header }}
 
     {% comment %}
@@ -42,25 +25,6 @@
 
     {%- if settings.storefront_hostname != blank and should_redirect -%}
       <script>
-
-        var refererUrl = document.referrer;
-      console.log("Referer URL:", refererUrl);
-        
-        async function captureHeaders() {
-        const response = await fetch(window.location.href);
-        const headers = [...response.headers.entries()];
-        console.log("Captured Headers:", headers);
-
-        // Example: Send headers to your server
-        // await fetch('/log-headers', {
-        //   method: 'POST',
-        //   headers: { 'Content-Type': 'application/json' },
-        //   body: JSON.stringify({ headers })
-        // });
-      }
-
-      captureHeaders();
-        
         function getCookie(name) {
           name = name + '=';
           var decodedCookie = decodeURIComponent(document.cookie);
@@ -72,10 +36,6 @@
             }
           }
         }
-
-        // Embed the Liquid request.path variable into JavaScript
-        var requestPath = "{{ request }}";
-        console.log("Request Path:", requestPath);
 
         function deleteCookie(name) {
           document.cookie = name +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
@@ -109,12 +69,6 @@
               }
             }
 
-            // Capture everything after /cart/
-            var urlPath = window.location.pathname + window.location.search;
-            var cartPath = urlPath.split('/cart/')[1];
-
-            console.log("CART PATH:", cartPath);
-
             redirectUrl = new URL(redirectUrl);
 
             {%- if settings.integrate_with_customer_accounts and customer != null -%}
@@ -135,8 +89,8 @@
               redirectUrl.searchParams.append("discount", discountCode);
               deleteCookie("discount_code");
             }
-            // window.storefrontRedirectUrl = redirectUrl;
-            // window.location.replace(redirectUrl);
+            window.storefrontRedirectUrl = redirectUrl;
+            window.location.replace(redirectUrl);
           }
         }
       </script>

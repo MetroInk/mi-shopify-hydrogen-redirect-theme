@@ -25,6 +25,9 @@
 
     {%- if settings.storefront_hostname != blank and should_redirect -%}
       <script>
+
+        console.log('URL:', window.location.href);
+        
         function getCookie(name) {
           name = name + '=';
           var decodedCookie = decodeURIComponent(document.cookie);
@@ -90,7 +93,7 @@
               deleteCookie("discount_code");
             }
             window.storefrontRedirectUrl = redirectUrl;
-            window.location.replace(redirectUrl);
+            // window.location.replace(redirectUrl);
           }
         }
       </script>

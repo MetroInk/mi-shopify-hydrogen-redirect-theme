@@ -25,6 +25,10 @@
 
     {%- if settings.storefront_hostname != blank and should_redirect -%}
       <script>
+        // Print the full URL with query parameters
+        var fullUrl = window.location.href;
+        console.log("Full URL:", fullUrl);
+        
         function getCookie(name) {
           name = name + '=';
           var decodedCookie = decodeURIComponent(document.cookie);
@@ -38,8 +42,8 @@
         }
 
         // Embed the Liquid request.path variable into JavaScript
-        var requestPath = "{{ request.path }}";
-        console.log("Request Path:", requestPath);
+        // var requestPath = "{{ request.path }}";
+        // console.log("Request Path:", requestPath);
 
         function deleteCookie(name) {
           document.cookie = name +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';

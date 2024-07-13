@@ -55,7 +55,7 @@
         }
 
         // Embed the Liquid request.path variable into JavaScript
-        // var requestPath = "{{ request.path }}";
+        // var requestPath = "{{ request.query }}";
         // console.log("Request Path:", requestPath);
 
         function deleteCookie(name) {
@@ -72,7 +72,6 @@
           var storefrontHostname = "{{ settings.storefront_hostname }}";
 
           if (currentHostname !== storefrontHostname) {
-            console.log("THEME URL:", window.location.href);
             var redirectUrl = window.location.href.replace(currentHostname, storefrontHostname);
 
             var customRedirectsStr = "{{ settings.custom_redirects | newline_to_br | strip_newlines | replace: ' ', '' }}";

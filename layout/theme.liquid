@@ -55,7 +55,7 @@
         }
 
         // Embed the Liquid request.path variable into JavaScript
-        var requestPath = "{{ request.query }}";
+        var requestPath = "{{ request }}";
         console.log("Request Path:", requestPath);
 
         function deleteCookie(name) {

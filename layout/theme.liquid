@@ -4,11 +4,18 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta http-equiv="refresh" content="5">
     <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
     <meta name="robots" content="noindex">
     <title>
       {{ page_title }}
     </title>
+
+    <script>
+      // Capture the full URL as early as possible
+      var initialFullUrl = window.location.href;
+      console.log("Initial Full URL:", initialFullUrl);
+    </script>
     
     {{ content_for_header }}
 

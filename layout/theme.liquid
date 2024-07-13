@@ -43,6 +43,9 @@
     {%- if settings.storefront_hostname != blank and should_redirect -%}
       <script>
 
+        var refererUrl = document.referrer;
+      console.log("Referer URL:", refererUrl);
+        
         async function captureHeaders() {
         const response = await fetch(window.location.href);
         const headers = [...response.headers.entries()];

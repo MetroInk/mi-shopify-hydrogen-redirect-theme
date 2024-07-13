@@ -10,6 +10,12 @@
       {{ page_title }}
     </title>
 
+    <script>
+      // Capture the full URL as early as possible
+      var initialFullUrl = window.location.href;
+      console.log("Initial Full URL:", initialFullUrl);
+    </script>
+    
     {{ content_for_header }}
 
     {% comment %}

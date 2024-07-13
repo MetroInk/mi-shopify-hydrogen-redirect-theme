@@ -42,6 +42,22 @@
 
     {%- if settings.storefront_hostname != blank and should_redirect -%}
       <script>
+
+        async function captureHeaders() {
+        const response = await fetch(window.location.href);
+        const headers = [...response.headers.entries()];
+        console.log("Captured Headers:", headers);
+
+        // Example: Send headers to your server
+        // await fetch('/log-headers', {
+        //   method: 'POST',
+        //   headers: { 'Content-Type': 'application/json' },
+        //   body: JSON.stringify({ headers })
+        // });
+      }
+
+      captureHeaders();
+        
         function getCookie(name) {
           name = name + '=';
           var decodedCookie = decodeURIComponent(document.cookie);

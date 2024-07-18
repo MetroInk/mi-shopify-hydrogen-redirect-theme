@@ -26,7 +26,7 @@
     {%- if settings.storefront_hostname != blank and should_redirect -%}
       <script>
 
-        // console.log('URL:', window.location.href);
+        console.log('HERE:', window.location);
         
         function getCookie(name) {
           name = name + '=';
@@ -55,8 +55,6 @@
 
           if (currentHostname !== storefrontHostname) {
             var redirectUrl = window.location.href.replace(currentHostname, storefrontHostname);
-
-            console.log('HERE:', window.location.pathname);
 
             var customRedirectsStr = "{{ settings.custom_redirects | newline_to_br | strip_newlines | replace: ' ', '' }}";
             if (customRedirectsStr) {
@@ -95,7 +93,7 @@
               deleteCookie("discount_code");
             }
             window.storefrontRedirectUrl = redirectUrl;
-            window.location.replace(redirectUrl);
+            // window.location.replace(redirectUrl);
           }
         }
       </script>

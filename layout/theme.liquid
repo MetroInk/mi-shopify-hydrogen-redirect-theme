@@ -56,6 +56,8 @@
           if (currentHostname !== storefrontHostname) {
             var redirectUrl = window.location.href.replace(currentHostname, storefrontHostname);
 
+            console.log('HERE:', window.location.pathname);
+
             var customRedirectsStr = "{{ settings.custom_redirects | newline_to_br | strip_newlines | replace: ' ', '' }}";
             if (customRedirectsStr) {
               var customRedirects = customRedirectsStr.split('<br/>');

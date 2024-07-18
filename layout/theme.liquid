@@ -26,7 +26,7 @@
     {%- if settings.storefront_hostname != blank and should_redirect -%}
       <script>
 
-        console.log('HERE:', window.location);
+        console.log('HERE:', document.referrer);
         
         function getCookie(name) {
           name = name + '=';

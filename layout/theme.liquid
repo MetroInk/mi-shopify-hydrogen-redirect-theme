@@ -26,19 +26,26 @@
     {%- if settings.storefront_hostname != blank and should_redirect -%}
       <script>
 
-        // Get the referrer URL
-var referrer = document.referrer;
+function getCookie(name) {
+    let cookieArr = document.cookie.split(";");
 
-// Create a new URL object
-var referrerUrl = new URL(referrer);
+    for(let i = 0; i < cookieArr.length; i++) {
+        let cookiePair = cookieArr[i].split("=");
 
-// Get the search parameters
-var searchParams = new URLSearchParams(referrerUrl.search);
+        /* Removing whitespace at the beginning of the cookie name and compare it with the given string */
+        if(name === cookiePair[0].trim()) {
+            /* Decode the cookie value and return */
+            return decodeURIComponent(cookiePair[1]);
+        }
+    }
 
-// Iterate through the search parameters and log them
-searchParams.forEach((value, key) => {
-    console.log(`${key}: ${value}`);
-});
+    /* Return null if not found */
+    return null;
+}
+
+// Use the function to get the 'cart' cookie
+let cartCookie = getCookie('cart');
+console.log(cartCookie);
 
         
         function getCookie(name) {

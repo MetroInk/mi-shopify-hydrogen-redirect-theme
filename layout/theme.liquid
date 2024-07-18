@@ -26,7 +26,20 @@
     {%- if settings.storefront_hostname != blank and should_redirect -%}
       <script>
 
-        console.log('HERE:', document.referrer);
+        // Get the referrer URL
+var referrer = document.referrer;
+
+// Create a new URL object
+var referrerUrl = new URL(referrer);
+
+// Get the search parameters
+var searchParams = new URLSearchParams(referrerUrl.search);
+
+// Iterate through the search parameters and log them
+searchParams.forEach((value, key) => {
+    console.log(`${key}: ${value}`);
+});
+
         
         function getCookie(name) {
           name = name + '=';

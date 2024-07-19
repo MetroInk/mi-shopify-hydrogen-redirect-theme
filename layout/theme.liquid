@@ -103,6 +103,18 @@
                 .then(data => {
                   console.log(data); // This will log the entire cart object
 
+                  const paramsToRemove = [
+                    'checkout[shipping_address][address1]',
+                    'checkout[shipping_address][city]',
+                    'checkout[shipping_address][country]',
+                    'checkout[shipping_address][first_name]',
+                    'checkout[shipping_address][last_name]',
+                    'checkout[shipping_address][province]',
+                    'checkout[shipping_address][zip]'
+                  ];
+                  
+                  paramsToRemove.forEach(param => redirectUrl.searchParams.delete(param));
+
                   let newPath = '/cart';
                   if (data.items && data.items.length > 0) {
                     const cartItems = data.items.map(item => `${item.variant_id}:${item.quantity}:${item.id}`).join(',');

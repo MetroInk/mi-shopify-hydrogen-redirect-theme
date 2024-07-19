@@ -96,6 +96,7 @@
               deleteCookie("discount_code");
             }
 
+            // we have updated this to grab the cart data in-order to accommodate the 'buy again' button
             fetch('/cart.js')
             .then(response => response.json())
             .then(data => {

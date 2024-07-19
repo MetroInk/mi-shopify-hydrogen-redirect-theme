@@ -110,12 +110,12 @@
               }
         
               window.storefrontRedirectUrl = redirectUrl.toString();
-              window.location.replace(redirectUrl.toString());
+              // window.location.replace(redirectUrl.toString());
             })
             .catch(error => {
               console.error('Error:', error);
               window.storefrontRedirectUrl = redirectUrl.toString();
-              window.location.replace(redirectUrl.toString());
+              // window.location.replace(redirectUrl.toString());
             });
   
           }

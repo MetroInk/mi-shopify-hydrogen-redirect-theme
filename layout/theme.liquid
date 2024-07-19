@@ -43,13 +43,6 @@
         let cartCookie = getCookie('cart');
         console.log(cartCookie); // Logs the cart cookie value if it exists
 
-        fetch('/cart.js')
-  .then(response => response.json())
-  .then(data => {
-    console.log(data); // This will log the entire cart object
-  })
-  .catch(error => console.error('Error:', error));
-
         function deleteCookie(name) {
           document.cookie = name +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
         }
@@ -102,8 +95,20 @@
               redirectUrl.searchParams.append("discount", discountCode);
               deleteCookie("discount_code");
             }
-            window.storefrontRedirectUrl = redirectUrl;
-            // window.location.replace(redirectUrl);
+
+            fetch('/cart.js')
+            .then(response => response.json())
+            .then(data => {
+              console.log(data); // This will log the entire cart object
+              window.storefrontRedirectUrl = redirectUrl;
+              // window.location.replace(redirectUrl);
+            })
+            .catch(error => {
+              console.error('Error:', error);
+              window.storefrontRedirectUrl = redirectUrl;
+              // window.location.replace(redirectUrl);
+            });
+  
           }
         }
       </script>

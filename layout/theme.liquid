@@ -152,7 +152,7 @@
     <style>
       body {
         margin: 0;
-        font-family: system-ui;
+        font-family: 'itc-avant-garde-gothic-pro', sans-serif, system-ui;
         box-sizing: border-box;
         padding: clamp(1em, 5vw, 5em);
         min-height: 100vh;
@@ -176,18 +176,18 @@
       }
       @media (prefers-color-scheme: dark) {
         body {
-          color: #a1b8c1;
+          color: #a0a1a3;
           background: rgb(33, 33, 33);
         }
         a {
-          color: #81a9fe;
+          color: #ff7300;
         }
         a:visited {
-          color: #c691e8;
+          color: #ff7300;
         }
         h1 > a,
         h1 > a:visited {
-          color: #a1b8c1;
+          color: #ff7300;
         }
       }
     </style>
@@ -197,10 +197,10 @@
       <div class="redirect">
         {%- if settings.storefront_hostname != blank -%}
           <h1>Stand by...</h1>
-          <!-- <p> -->
-            <!-- <a id="redirect-link" href="https://{{ settings.storefront_hostname }}/">Click here</a> -->
-            <!-- if you are not automically redirected. -->
-          <!-- </p> -->
+          <p>
+            <a id="redirect-link" href="https://{{ settings.storefront_hostname }}/">Click here</a>
+            if you are not automically redirected.
+          </p>
           <script>
             if (!window.Shopify.designMode) {
               var redirectLink = document.getElementById('redirect-link');

@@ -117,7 +117,7 @@
 
                   let newPath = '/cart';
                   if (data.items && data.items.length > 0) {
-                    const cartItems = data.items.map(item => `${item.variant_id}:${item.quantity}:${item.id}`).join(',');
+                    const cartItems = data.items.map(item => `${item.variant_id}:${item.quantity}:${item.product_id}`).join(',');
                     newPath += `/${cartItems}`;
                   }
             
@@ -127,7 +127,7 @@
             
                   redirectUrl.pathname = newPath;
                   window.storefrontRedirectUrl = redirectUrl.toString();
-                  // window.location.replace(redirectUrl.toString());
+                  window.location.replace(redirectUrl.toString());
                 })
                 .catch(error => {
                   console.error('Error:', error);

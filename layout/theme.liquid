@@ -103,28 +103,17 @@
                 .then(data => {
                   console.log(data); // This will log the entire cart object
 
-                  // Remove all checkout[shipping_address] search params
-                  const paramsToRemove = [
-                    'checkout[shipping_address][address1]',
-                    'checkout[shipping_address][city]',
-                    'checkout[shipping_address][country]',
-                    'checkout[shipping_address][first_name]',
-                    'checkout[shipping_address][last_name]',
-                    'checkout[shipping_address][province]',
-                    'checkout[shipping_address][zip]'
-                  ];
-                  
-                  paramsToRemove.forEach(param => redirectUrl.searchParams.delete(param));
-                  
+                  let newPath = '/cart';
                   if (data.items && data.items.length > 0) {
-                    const cartItems = data.items.map(item => ({
-                      variantId: item.variant_id,
-                      quantity: item.quantity
-                    }));
-        
-                    redirectUrl.searchParams.append('cartItems', JSON.stringify(cartItems));
+                    const cartItems = data.items.map(item => `${item.variant_id}:${item.quantity}`).join(',');
+                    newPath += `/${cartItems}`;
                   }
-        
+            
+                  if (discountCode) {
+                    redirectUrl.searchParams.set('discount', discountCode); // Add the discount code as a search param
+                  }
+            
+                  redirectUrl.pathname = newPath;
                   window.storefrontRedirectUrl = redirectUrl.toString();
                   window.location.replace(redirectUrl.toString());
                 })

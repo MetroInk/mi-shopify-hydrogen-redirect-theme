@@ -121,22 +121,13 @@
                 });
             } else {
               // Clear the cart if the destination path is not '/cart'
-              fetch('/cart/clear.js', {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json',
-                  'Accept': 'application/json'
-                }
-              })
-              .then(() => {
-                window.storefrontRedirectUrl = redirectUrl.toString();
-                window.location.replace(redirectUrl.toString());
-              })
-              .catch(error => {
-                console.error('Error clearing the cart:', error);
-                window.storefrontRedirectUrl = redirectUrl.toString();
-                window.location.replace(redirectUrl.toString());
-              });
+              // Clear the cart without waiting for the response using sendBeacon
+              navigator.sendBeacon('/cart/clear.js');
+        
+              // Redirect immediately
+              console.log('Redirecting to:', redirectUrl.toString());
+              window.storefrontRedirectUrl = redirectUrl.toString();
+              window.location.replace(redirectUrl.toString());
             }
   
           }

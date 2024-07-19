@@ -99,7 +99,7 @@
             fetch('/cart.js')
             .then(response => response.json())
             .then(data => {
-              console.log(data); // This will log the entire cart object
+              // console.log(data); // This will log the entire cart object
               if (data.items && data.items.length > 0) {
                 const cartItems = data.items.map(item => ({
                   variantId: item.variant_id,
@@ -109,12 +109,12 @@
               }
         
               window.storefrontRedirectUrl = redirectUrl.toString();
-              // window.location.replace(redirectUrl.toString());
+              window.location.replace(redirectUrl.toString());
             })
             .catch(error => {
               console.error('Error:', error);
               window.storefrontRedirectUrl = redirectUrl.toString();
-              // window.location.replace(redirectUrl.toString());
+              window.location.replace(redirectUrl.toString());
             });
   
           }

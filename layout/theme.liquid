@@ -115,7 +115,7 @@
             
                   redirectUrl.pathname = newPath;
                   window.storefrontRedirectUrl = redirectUrl.toString();
-                  window.location.replace(redirectUrl.toString());
+                  // window.location.replace(redirectUrl.toString());
                 })
                 .catch(error => {
                   console.error('Error:', error);
@@ -141,7 +141,7 @@
     <style>
       body {
         margin: 0;
-        font-family: 'itc-avant-garde-gothic-pro', sans-serif, system-ui;
+        font-family: sans-serif, system-ui;
         box-sizing: border-box;
         padding: clamp(1em, 5vw, 5em);
         min-height: 100vh;
@@ -151,7 +151,6 @@
       }
       h1 {
         color: inherit;
-        font-size: 0.8em;
       }
       h1 > a {
         text-decoration: none;

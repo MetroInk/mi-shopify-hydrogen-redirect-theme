@@ -100,14 +100,22 @@
             .then(response => response.json())
             .then(data => {
               console.log(data); // This will log the entire cart object
-              
-              window.storefrontRedirectUrl = redirectUrl;
-              window.location.replace(redirectUrl);
+              if (data.items && data.items.length > 0) {
+                data.items.forEach((item, index) => {
+                  redirectUrl.searchParams.append(`item${index + 1}_handle`, item.handle);
+                  item.options_with_values.forEach(option => {
+                    redirectUrl.searchParams.append(`item${index + 1}_${option.name}`, option.value);
+                  });
+                });
+              }
+        
+              window.storefrontRedirectUrl = redirectUrl.toString();
+              window.location.replace(redirectUrl.toString());
             })
             .catch(error => {
               console.error('Error:', error);
-              window.storefrontRedirectUrl = redirectUrl;
-              // window.location.replace(redirectUrl);
+              window.storefrontRedirectUrl = redirectUrl.toString();
+              window.location.replace(redirectUrl.toString());
             });
   
           }

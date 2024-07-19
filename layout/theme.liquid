@@ -95,28 +95,49 @@
               redirectUrl.searchParams.append("discount", discountCode);
               deleteCookie("discount_code");
             }
-
-            // we have updated this to grab the cart data in-order to accommodate the 'buy again' button
-            fetch('/cart.js')
-            .then(response => response.json())
-            .then(data => {
-              // console.log(data); // This will log the entire cart object
-              if (data.items && data.items.length > 0) {
-                const cartItems = data.items.map(item => ({
-                  variantId: item.variant_id,
-                  quantity: item.quantity
-                }));
-                redirectUrl.searchParams.append('cartItems', JSON.stringify(cartItems));
-              }
+            
+            // Check if the destination path is '/cart' before fetching cart items
+            if (redirectUrl.pathname === '/cart') {
+              fetch('/cart.js')
+                .then(response => response.json())
+                .then(data => {
+                  console.log(data); // This will log the entire cart object
+                  if (data.items && data.items.length > 0) {
+                    const cartItems = data.items.map(item => ({
+                      variantId: item.variant_id,
+                      quantity: item.quantity
+                    }));
         
-              window.storefrontRedirectUrl = redirectUrl.toString();
-              window.location.replace(redirectUrl.toString());
-            })
-            .catch(error => {
-              console.error('Error:', error);
-              window.storefrontRedirectUrl = redirectUrl.toString();
-              window.location.replace(redirectUrl.toString());
-            });
+                    redirectUrl.searchParams.append('cartItems', JSON.stringify(cartItems));
+                  }
+        
+                  window.storefrontRedirectUrl = redirectUrl.toString();
+                  window.location.replace(redirectUrl.toString());
+                })
+                .catch(error => {
+                  console.error('Error:', error);
+                  window.storefrontRedirectUrl = redirectUrl.toString();
+                  window.location.replace(redirectUrl.toString());
+                });
+            } else {
+              // Clear the cart if the destination path is not '/cart'
+              fetch('/cart/clear.js', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                  'Accept': 'application/json'
+                }
+              })
+              .then(() => {
+                window.storefrontRedirectUrl = redirectUrl.toString();
+                window.location.replace(redirectUrl.toString());
+              })
+              .catch(error => {
+                console.error('Error clearing the cart:', error);
+                window.storefrontRedirectUrl = redirectUrl.toString();
+                window.location.replace(redirectUrl.toString());
+              });
+            }
   
           }
         }

@@ -198,10 +198,10 @@
     {%- if should_redirect -%}
       <div class="redirect">
         {%- if settings.storefront_hostname != blank -%}
-          <h1>Stand by...</h1>
-          <p>
+          <h1>Updating...</h1>
+          <!-- <p>
             If the store does not display <a id="redirect-link" href="https://{{ settings.storefront_hostname }}/">try this link.</a>
-          </p>
+          </p> -->
           <script>
             if (!window.Shopify.designMode) {
               var redirectLink = document.getElementById('redirect-link');
